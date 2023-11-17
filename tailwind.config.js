@@ -1,17 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        "dark-blue": "#2b3945",
-        "very-dark-blue-1": "#202c37",
-        "very-dark-blue-2": "#111517",
-        "dark-gray": "#858585",
-        "very-light-gray": "#fafafa",
+        Element: "var(--Element)",
+        Background: "var(--Background)",
+        Text: "var(--Text)",
+        Input: "var(--Input)",
       },
       fontFamily: {
-        league: ["Nunito Sans", "sans-serif"],
+        NunitoSans: ["NunitoSans", "sans-serif"],
       },
     },
   },
