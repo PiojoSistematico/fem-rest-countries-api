@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
-import iconMoon from "./assets/images/icon-moon.svg";
-import iconSun from "./assets/images/icon-sun.svg";
 import {
   Button,
   Input,
-  Item,
   ListBox,
+  ListBoxItem,
   Popover,
   SearchField,
   Select,
   SelectValue,
-  TextField,
 } from "react-aria-components";
 
 import { CountryProps } from "./types";
 import Card from "./components/Card";
 import { IconMoon, IconSun } from "./components/Icons";
 
+type RegionProp = "All" | "Africa" | "Americas" | "Asia" | "Europe" | "Oceania";
+
 function App() {
   const [theme, setTheme] = useState("light");
   const [data, setData] = useState<CountryProps[]>([]);
+  const [region, setRegion] = useState<RegionProp>("All");
+  const [filterWord, setFilterWord] = useState("");
 
   function handleTheme(): void {
     setTheme((prev) => (prev == "light" ? "dark" : "light"));
@@ -30,8 +31,6 @@ function App() {
       .then((res) => res.json())
       .then((info) => setData(info));
   }, []);
-
-  console.log(data);
 
   return (
     <>
@@ -62,30 +61,49 @@ function App() {
             <Input
               className="w-full"
               placeholder="Search for a country...."
+              value={filterWord}
+              onChange={(e) => setFilterWord(e.target.value)}
             ></Input>
           </SearchField>
 
-          <Select className="bg-Element p-4 rounded-md text-text w-max">
+          <Select
+            selectedKey={region}
+            onSelectionChange={(sel) => setRegion(sel)}
+            className="bg-Element p-4 rounded-md text-text w-3/4"
+          >
             <Button className="flex flex-row items-center gap-8">
               <SelectValue>Filter by Region</SelectValue>
               <span aria-hidden="true">▼</span>
             </Button>
-            <Popover className="bg-red-400 p-4 rounded-md">
+            <Popover className="bg-red-400 p-4 rounded-md w-3/4">
               <ListBox>
-                <Item>Africa</Item>
-                <Item>America</Item>
-                <Item>Asia</Item>
-                <Item>Europe</Item>
-                <Item>Oceania</Item>
+                <ListBoxItem id={"Africa"}>Africa</ListBoxItem>
+                <ListBoxItem id={"Americas"}>Americas</ListBoxItem>
+                <ListBoxItem id={"Asia"}>Asia</ListBoxItem>
+                <ListBoxItem id={"Europe"}>Europe</ListBoxItem>
+                <ListBoxItem id={"Oceania"}>Oceania</ListBoxItem>
               </ListBox>
             </Popover>
           </Select>
         </div>
 
         <ul className="flex flex-col items-center gap-8">
-          {data.map((elem, index) => (
-            <Card elem={elem} key={index}></Card>
-          ))}
+          {region == "All"
+            ? data
+                .filter((elem) =>
+                  elem.name.common
+                    .toLowerCase()
+                    .includes(filterWord.toLowerCase())
+                )
+                .map((elem, index) => <Card elem={elem} key={index}></Card>)
+            : data
+                .filter((elem) =>
+                  elem.name.common
+                    .toLowerCase()
+                    .includes(filterWord.toLowerCase())
+                )
+                .filter((elem) => elem.region == region)
+                .map((elem, index) => <Card elem={elem} key={index}></Card>)}
         </ul>
       </main>
     </>
