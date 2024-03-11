@@ -7,7 +7,7 @@ type CardProps = {
 const Card: React.FunctionComponent<CardProps> = ({ elem }) => {
   return (
     <article className="rounded-md overflow-hidden">
-      <picture>
+      <picture className="max-h-32">
         <img
           src={elem.flags.png}
           alt="flag"

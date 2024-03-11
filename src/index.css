@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+  article[data-theme="light"],
   main[data-theme="light"],
   header[data-theme="light"] {
     --Element: #ffffff;
@@ -10,6 +11,7 @@
     --Text: #121517;
     --Input: #858585;
   }
+  article[data-theme="dark"],
   main[data-theme="dark"],
   header[data-theme="dark"] {
     --Element: #2b3945;
