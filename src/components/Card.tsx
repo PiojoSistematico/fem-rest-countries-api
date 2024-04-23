@@ -6,12 +6,12 @@ type CardProps = {
 
 const Card: React.FunctionComponent<CardProps> = ({ elem }) => {
   return (
-    <article className="rounded-md overflow-hidden">
-      <picture className="max-h-32">
+    <article className="rounded-md overflow-hidden md:basis-1/4 shadow-lg">
+      <picture className="">
         <img
           src={elem.flags.png}
           alt="flag"
-          className="object-contain w-full"
+          className="object-fill w-full h-48"
         />
       </picture>
       <div className="bg-Element p-8 flex flex-col gap-4">

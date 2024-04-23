@@ -55,8 +55,8 @@ const Home: React.FunctionComponent<HomeProps> = ({ theme, handleTheme }) => {
         data-theme={theme}
         className="bg-Background text-base text-Text font-NunitoSans font-normal p-8 flex flex-col gap-8 min-h-screen"
       >
-        <div className="flex flex-col gap-8 text-Text">
-          <SearchField className="bg-Element p-4 rounded-md flex flex-row items-center gap-2 text-Input">
+        <div className="flex flex-col gap-8 text-Text md:flex-row md:justify-between">
+          <SearchField className="bg-Element p-4 rounded-md flex flex-row items-center gap-2 text-Input md:basis-2/3">
             <Button></Button>
             <Input
               className="w-full bg-Element"
@@ -69,7 +69,7 @@ const Home: React.FunctionComponent<HomeProps> = ({ theme, handleTheme }) => {
           <Select
             selectedKey={region}
             onSelectionChange={(sel) => setRegion(sel)}
-            className="bg-Element p-4 rounded-md text-text w-3/4"
+            className="bg-Element p-4 rounded-md text-text w-3/4 md:basis-1/3 md:w-1/4"
           >
             <Label>Filter by Region</Label>
             <Button className="flex flex-row items-center gap-8 justify-between w-full">
@@ -90,7 +90,7 @@ const Home: React.FunctionComponent<HomeProps> = ({ theme, handleTheme }) => {
           </Select>
         </div>
 
-        <ul className="flex flex-col gap-8 w-full">
+        <ul className="flex flex-col gap-8 w-full md:grid md:grid-cols-3 md:auto-rows-fr lg:grid-cols-4">
           {region == "All"
             ? data
                 .filter((elem) =>

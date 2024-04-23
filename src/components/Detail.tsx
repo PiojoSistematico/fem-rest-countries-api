@@ -17,7 +17,7 @@ const Detail: React.FunctionComponent<DetailProps> = ({
     <>
       <header
         data-theme={theme}
-        className="bg-Element text-base text-Text font-NunitoSans font-normal flex flex-row items-center justify-between p-8"
+        className="bg-Element text-base text-Text font-NunitoSans font-normal flex flex-row items-center justify-between p-8 md:px-16"
       >
         <p className="font-bold">Where in the world?</p>
         <Button
@@ -32,7 +32,7 @@ const Detail: React.FunctionComponent<DetailProps> = ({
       </header>
       {state && (
         <article
-          className="bg-Background min-h-screen p-8 flex flex-col gap-12 text-Text"
+          className="bg-Background min-h-screen p-8 flex flex-col gap-12 text-Text md:p-16"
           data-theme={theme}
         >
           <Link
@@ -42,47 +42,55 @@ const Detail: React.FunctionComponent<DetailProps> = ({
             <span>{"<-- Back"}</span>
           </Link>
 
-          <div className="flex flex-col gap-8">
-            <img src={state.flags.png} alt="flag" />
+          <div className="flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-24">
+            <picture>
+              <img
+                src={state.flags.png}
+                alt="flag"
+                className="object-contain w-full h-90 max-h-96"
+              />
+            </picture>
 
-            <div className="flex flex-col gap-2">
-              <div className="pb-4 font-bold">
-                <span>{state.name.common}</span>
+            <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-2">
+                <div className="pb-4 font-bold">
+                  <span>{state.name.common}</span>
+                </div>
+                <div className="">
+                  <span>Official Name: </span>
+                  <span className="opacity-60">{state.name.official}</span>
+                </div>
+                <div>
+                  <span>Population: </span>
+                  <span className="opacity-60">{state.population}</span>
+                </div>
+                <div>
+                  <span>Region: </span>
+                  <span className="opacity-60">{state.region}</span>
+                </div>
+                <div>
+                  <span>Sub Region: </span>
+                  <span className="opacity-60">{state.subregion}</span>
+                </div>
+                <div>
+                  <span>Capital: </span>
+                  <span className="opacity-60">{state.capital}</span>
+                </div>
               </div>
-              <div className="">
-                <span>Official Name: </span>
-                <span className="opacity-60">{state.name.official}</span>
-              </div>
-              <div>
-                <span>Population: </span>
-                <span className="opacity-60">{state.population}</span>
-              </div>
-              <div>
-                <span>Region: </span>
-                <span className="opacity-60">{state.region}</span>
-              </div>
-              <div>
-                <span>Sub Region: </span>
-                <span className="opacity-60">{state.subregion}</span>
-              </div>
-              <div>
-                <span>Capital: </span>
-                <span className="opacity-60">{state.capital}</span>
-              </div>
-            </div>
 
-            <div className="flex flex-col gap-2">
-              <div>
-                <span>Top Level Domain: </span>
-                <span className="opacity-60">{state.tld}</span>
-              </div>
-              <div>
-                <span>Currencies: </span>
-                <span className="opacity-60">{state.name.common}</span>
-              </div>
-              <div>
-                <span>Languages: </span>
-                <span className="opacity-60">{state.name.common}</span>
+              <div className="flex flex-col gap-2">
+                <div>
+                  <span>Top Level Domain: </span>
+                  <span className="opacity-60">{state.tld}</span>
+                </div>
+                <div>
+                  <span>Currencies: </span>
+                  <span className="opacity-60">{state.name.common}</span>
+                </div>
+                <div>
+                  <span>Languages: </span>
+                  <span className="opacity-60">{state.name.common}</span>
+                </div>
               </div>
             </div>
           </div>
